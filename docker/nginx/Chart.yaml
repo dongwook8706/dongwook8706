@@ -1,4 +1,4 @@
 apiVersion: v2
 description: nginx
-name: nginx1
+name: nginx
 version: 0.1
