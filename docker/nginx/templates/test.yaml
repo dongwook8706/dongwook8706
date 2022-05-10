@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web
+    version: v{{ .Values.version }}
+  name: {{ .Values.name }}
+  namespace: dw
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+      version: v{{ .Values.version }}
+  template:
+    metadata:
+      labels:
+        app: web
+        version: v{{ .Values.version }}
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - amd64
+                      - arm64
+      containers:
+        - image: "388272709061.dkr.ecr.ap-northeast-2.amazonaws.com/ekstest1:{{ .Values.imagetag }}"
+          imagePullPolicy: IfNotPresent
+          name: web
+          ports:
+            - containerPort: 80
+              name: http
+      nodeSelector:
+        kubernetes.io/os: linux
+
