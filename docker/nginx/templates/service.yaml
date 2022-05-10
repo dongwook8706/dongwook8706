@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.name }}
+  namespace: dw
+  labels:
+    app: web
+    version: v{{ .Values.version }}
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    app: web
+    version: v{{ .Values.version }}
