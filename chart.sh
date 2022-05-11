@@ -8,6 +8,7 @@ list=`ls |grep nginx|grep tgz`
 name=`ls |grep nginx|grep tgz |awk -F - '{print $1}'`
 version=`ls |grep nginx|grep tgz |awk -F - '{print $2}' |sed 's/.tgz//g'`
 echo $list
+echo $list > list.txt
 echo $name
 echo $version
 
