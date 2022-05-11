@@ -2,7 +2,7 @@
 
 echo "helm package"
 rm -rf *.tgz
-helm package ./docker/nginx/
+helm package ./dongwook8706/docker/nginx/
 
 list=`ls |grep nginx|grep tgz`
 name=`ls |grep nginx|grep tgz |awk -F - '{print $1}'`
@@ -24,7 +24,7 @@ echo ""
 
 echo ""
 echo "start - image ecr upload"
-cd ./build
+cd ./dongwook8706/build
 sh build.sh $version
 echo "end - image ecr upload"
 echo ""
