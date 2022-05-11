@@ -4,7 +4,7 @@ metadata:
   labels:
     app: web
     version: v{{ .Values.version }}
-  name: {{ .Values.name }}-v{{ .Values.version }}
+  name: {{ .Values.name }}
   namespace: dw
 spec:
   replicas: 1
